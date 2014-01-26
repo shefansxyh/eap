@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eap</groupId>
+	<artifactId>_eap</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+  <modules>
+    <module>eap.core</module>
+    <module>eap.web</module>
+    <module>eap.comps.codetable</module>
+    <module>eap.comps.mybatis</module>
+    <module>eap.test</module>
+    <module>eap.comps.sqlexecutor.mybatis</module>
+    <module>eap.comps.orm.mybatis</module>
+    <module>eap.web.extjs</module>
+    <module>eap.web.extjs</module>
+    <module>eap.comps.cache</module>
+    <module>eap.comps.cookie</module>
+    <module>eap.comps.datastore</module>
+    <module>eap.comps.token</module>
+    <module>eap.comps.httpclient</module>
+    <module>eap.comsp.scheduling</module>
+    <module>eap.comps.cxf</module>
+    <module>eap.comps.dataformat</module>
+    <module>eap.comps.datamapping</module>
+    <module>eap.comps.webflow</module>
+    <module>eap.monitor</module>
+    <module>eap.plugin</module>
+    <module>eap.comps.security</module>
+    <module>eap.comps.webevent</module>
+    <module>eap.comps.vcode</module>
+    <module>eap.comps.social</module>
+    <module>eap.web.demo</module>
+    <module>eap.comps.workflow</module>
+    <module>eap.comps.useragent</module>
+    <module>eap.comps.orm.jpa</module>
+    <module>eap.comps.orm.jpa</module>
+    <module>eap.comps.ad</module>
+    <module>eap.comps.ruleengine</module>
+  </modules>
+</project>
