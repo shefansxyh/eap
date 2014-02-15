@@ -38,5 +38,6 @@
     <module>eap.comps.orm.jpa</module>
     <module>eap.comps.ad</module>
     <module>eap.comps.ruleengine</module>
+    <module>_eap.comps.session</module>
   </modules>
 </project>

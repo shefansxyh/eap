@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jboss.netty.util.internal.ConcurrentHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,7 +39,7 @@ import eap.util.YuiCompressor.Options;
 @Controller
 public class CombineServlet extends BaseController {
 	
-	private Map<String, String> cachedResources = new HashMap<String, String>(); // TODO 
+	private Map<String, String> cachedResources = new ConcurrentHashMap(new HashMap<String, String>()); // TODO 
 	
 	public static final String CACHE_DIR = "/static/_COMBINE_CACHE";
 	private String cacheDir;
