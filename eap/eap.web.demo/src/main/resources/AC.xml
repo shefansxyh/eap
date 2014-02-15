@@ -38,7 +38,8 @@
 	<eapCache:cacheManager id="cacheManager" />
 	<eapDataStore:init memCacheManager="cacheManager" memCacheName="default" />
 	<eapJpa:init id="jpa1" dataSource="ds1" entityManagerFactoryId="entityManagerFactory" transactionManagerId="transactionManager" />
+	-->
 	<eapMybatis:init id="mb1" dataSource="ds1" />
-	 -->
+	 
 	 
 </beans>
