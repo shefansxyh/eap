@@ -6,7 +6,6 @@ import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
 
 import eap.EapContext;
-import eap.TopicManager;
 import eap.base.BaseBO;
 import eap.base.UserDetailsVO;
 import eap.util.DateUtil;
@@ -56,7 +55,7 @@ public class BaseBOHandlerInterceptor extends EmptyInterceptor {
 				}
 			}
 			
-			TopicManager.publish("#eap.comps.orm.jpa.BaseBOHandlerInterceptor.onSave.AFTER", entity.getClass());
+			EapContext.publish("#eap.comps.orm.jpa.BaseBOHandlerInterceptor.onSave.AFTER", entity.getClass());
 			
 			return true;
 		}
@@ -80,7 +79,7 @@ public class BaseBOHandlerInterceptor extends EmptyInterceptor {
 				}
 			}
 			
-			TopicManager.publish("#eap.comps.orm.jpa.BaseBOHandlerInterceptor.onFlushDirty.AFTER", entity.getClass());
+			EapContext.publish("#eap.comps.orm.jpa.BaseBOHandlerInterceptor.onFlushDirty.AFTER", entity.getClass());
 			
 			return true;
 		}

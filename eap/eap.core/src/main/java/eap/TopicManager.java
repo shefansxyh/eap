@@ -24,24 +24,24 @@ import java.util.concurrent.Executors;
  */
 public class TopicManager {
 	
-	private static Map<String, List<TopicListener>> listeneresMap = new ConcurrentHashMap<String, List<TopicListener>>();
+	private Map<String, List<TopicListener>> listeneresMap = new ConcurrentHashMap<String, List<TopicListener>>();
 	
-	private static Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+	private Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 	
-	public static void publish(String topic, Object data) {
+	public void publish(String topic, Object data) {
 		List<TopicListener> listeners = getListeners(topic);
 		for (TopicListener listener : listeners) {
 			dispatch(listener, data);
 		}
 	}
 	
-	public static void subscribe(String topic, TopicListener listener) {
+	public void subscribe(String topic, TopicListener listener) {
 		getListeners(topic).add(listener);
 	}
-	public static void unsubscribe(String topic) {
+	public void unsubscribe(String topic) {
 		getListeners(topic).clear();
 	}
-	public static void unsubscribe(String topic, TopicListener listener) {
+	public void unsubscribe(String topic, TopicListener listener) {
 		List<TopicListener> listeners = new ArrayList<TopicListener>(getListeners(topic));
 		boolean changed = false;
 		for (int i = 0; i < listeners.size(); i++) {
@@ -57,7 +57,7 @@ public class TopicManager {
 		}
 	}
 	
-	private static List<TopicListener> getListeners(String topic) {
+	private List<TopicListener> getListeners(String topic) {
 		List<TopicListener> listeners = listeneresMap.get(topic);
 		if (listeners == null) {
 			listeners = new CopyOnWriteArrayList<TopicListener>();
@@ -68,10 +68,10 @@ public class TopicManager {
 	}
 	
 	public void setListeneresMap(Map<String, List<TopicListener>> listeneresMap) {
-		TopicManager.listeneresMap = listeneresMap;
+		this.listeneresMap = listeneresMap;
 	}
 	
-	private static void dispatch(final TopicListener listener, final Object data) {
+	private void dispatch(final TopicListener listener, final Object data) {
 		executor.execute(
 			new Runnable() {
 				@Override
@@ -85,7 +85,9 @@ public class TopicManager {
 	public static void main(String[] args) {
 		TopicListener l1 = new L1();
 		
-		TopicManager.subscribe("a", l1);
+		final TopicManager tm = new TopicManager();
+		
+		tm.subscribe("a", l1);
 		
 		for (int j = 0; j < 100; j++) {
 			new Thread(new Runnable() {
@@ -93,7 +95,7 @@ public class TopicManager {
 				public void run() {
 					for (int i = 0; i < 10000; i++) {
 						if (i == 999) {
-						TopicManager.publish("a", i);
+							tm.publish("a", i);
 						}
 					}
 				}
@@ -101,7 +103,7 @@ public class TopicManager {
 		}
 		
 //		TopicManager.unsubscribe("a", l1);
-		TopicManager.unsubscribe("a");
+		tm.unsubscribe("a");
 		
 //		TopicManager.publish("a", 1);
 		

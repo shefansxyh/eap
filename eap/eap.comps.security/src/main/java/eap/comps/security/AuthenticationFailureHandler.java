@@ -23,7 +23,6 @@ import org.springframework.security.web.authentication.VcodeNotMatchException;
 import org.springframework.security.web.authentication.www.NonceExpiredException;
 
 import eap.EapContext;
-import eap.TopicManager;
 import eap.comps.webevent.WebFormVO;
 import eap.util.DateUtil;
 import eap.util.JsonUtil;
@@ -87,7 +86,7 @@ public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailure
 			super.onAuthenticationFailure(request, response, exception);
 		}
 		
-		TopicManager.publish("#login.failure", exception);
+		EapContext.publish("#login.failure", exception);
 	}
 	
 	public void onAuthenticationFailureForAjax(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) 

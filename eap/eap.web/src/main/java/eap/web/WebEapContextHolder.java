@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import eap.Env;
 import eap.IEapContextHolder;
+import eap.TopicManager;
 import eap.WebEnv;
 import eap.base.UserDetailsVO;
 import eap.util.HttpUtil;
@@ -31,17 +32,21 @@ import eap.util.HttpUtil;
  */
 public class WebEapContextHolder implements IEapContextHolder {
 	
-	private static Env env = null;
+	private Env env;
+	private TopicManager topicManager;
 	
-	@Override
 	public Env getEnv() {
-		if (env == null) {
-			synchronized(this) {
-				env = new WebEnv();
-			}
-		}
-		
 		return env;
+	}
+	public void setEnv(Env env) {
+		this.env = env;
+	}
+
+	public TopicManager getTopicManager() {
+		return topicManager;
+	}
+	public void setTopicManager(TopicManager topicManager) {
+		this.topicManager = topicManager;
 	}
 
 	public UserDetailsVO getUserDetailsVO() {
@@ -57,7 +62,6 @@ public class WebEapContextHolder implements IEapContextHolder {
 		return (request != null ? HttpUtil.getRemoteAddr(request) : null);
 	}
 	
-	@Override
 	public <T> T get(String key, Class<T> requireType) {
 		if ("request".equals(key)) {
 			return (T) getRequest();

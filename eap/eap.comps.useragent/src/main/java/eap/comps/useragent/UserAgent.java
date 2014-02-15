@@ -506,7 +506,7 @@ public class UserAgent {
 		for (String ua : uas) {
 			String[] stats = parse(ua);
 			
-//			System.out.println(Arrays.asList(stats));
+			System.out.println(Arrays.asList(stats));
 			
 //			jt.update("insert into t_access_log_copy(user_agent,os_name,os_version,device_type,device_name,rendering_engine,bowser_name_l2,bowser_version_l2,bowser_name_l1,bowser_version_l1,screen) values(?,?,?,?,?,?,?,?,?,?,?)", stats);
 			

@@ -19,7 +19,6 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.ClassUtils;
 
 import eap.EapContext;
-import eap.TopicManager;
 import eap.base.IUserDetailsVOWrapper;
 import eap.base.UserDetailsVO;
 import eap.util.JsonUtil;
@@ -110,7 +109,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 			super.onAuthenticationSuccess(request, response, authentication);
 		}
 		
-		TopicManager.publish("login.success", authentication);
+		EapContext.publish("#login.success", authentication);
 	}
 	
 	public void onAuthenticationSuccessForAjax(HttpServletRequest request, HttpServletResponse response, Authentication authentication) 

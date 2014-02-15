@@ -12,7 +12,6 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 
 import eap.EapContext;
-import eap.TopicManager;
 import eap.base.BaseBO;
 import eap.base.UserDetailsVO;
 import eap.util.DateUtil;
@@ -78,7 +77,7 @@ public class BaseBOHandlerInterceptor implements Interceptor {
 		
 		Object result = invocation.proceed();
 		
-		TopicManager.publish("#eap.comps.orm.mybatis.BaseBOHandlerInterceptor.intercept.AFTER", mappedStatement.getId());
+		EapContext.publish("#eap.comps.orm.mybatis.BaseBOHandlerInterceptor.intercept.AFTER", mappedStatement.getId());
 		
 		return result;
 	}

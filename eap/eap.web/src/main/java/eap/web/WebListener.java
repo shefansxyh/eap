@@ -65,9 +65,11 @@ public class WebListener extends ContextLoaderListener implements ServletContext
 		System.gc();
 		System.setProperty("java.awt.headless", "true");
 		
-		TopicManager.publish("$context.initializing", event);
+		WebEapContextHolder contextHolder = new WebEapContextHolder();
+		contextHolder.setEnv(new WebEnv());
+		contextHolder.setTopicManager(new TopicManager());
 		
-		EapContext.init(new WebEapContextHolder());
+		EapContext.init(contextHolder);
 		env = EapContext.getEnv();
 		
 		if (UM.isEnabled()) { // TODO 首次加载？
@@ -98,6 +100,8 @@ public class WebListener extends ContextLoaderListener implements ServletContext
 			env.init();
 		}
 		
+		EapContext.publish("$context.initializing", event);
+		
 		ServletContext servletContext = event.getServletContext();
 		WebEnv.webContextPath = servletContext.getContextPath();
 		if (!env.containsKey("app.web.rootPath")) {
@@ -114,16 +118,16 @@ public class WebListener extends ContextLoaderListener implements ServletContext
 			((ServletContextListener) servletContextListeners.get(i)).contextInitialized(event);
 		}
 		
-		TopicManager.publish("$context.initialized", event);
+		EapContext.publish("$context.initialized", event);
 	}
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
-		TopicManager.publish("$context.destroying", event);
+		EapContext.publish("$context.destroying", event);
 		for (int i = servletContextListeners.size() - 1; i >= 0 ; i--) {
 			((ServletContextListener) servletContextListeners.get(i)).contextDestroyed(event);
 		}
 		super.contextDestroyed(event);
-		TopicManager.publish("$context.destroyed", event);
+		EapContext.publish("$context.destroyed", event);
 		UM.stop();
 		WebEnv.webContextPath = null;
 	}
@@ -252,7 +256,7 @@ public class WebListener extends ContextLoaderListener implements ServletContext
 	// START: HttpSessionListener
 	@Override
 	public void sessionCreated(HttpSessionEvent event) {
-		TopicManager.publish("$session.creating", event);
+		EapContext.publish("$session.creating", event);
 		String sessionTimeout = env.getProperty("app.web.session.timeout");
 		if (StringUtil.isNotBlank(sessionTimeout)) {
 			event.getSession().setMaxInactiveInterval(new Integer(sessionTimeout) * 60); // seconds
@@ -262,15 +266,15 @@ public class WebListener extends ContextLoaderListener implements ServletContext
 			((HttpSessionListener) httpSessionListeners.get(i)).sessionCreated(event);
 		}
 		
-		TopicManager.publish("$session.created", event);
+		EapContext.publish("$session.created", event);
 	}
 	@Override
 	public void sessionDestroyed(HttpSessionEvent event) {
-		TopicManager.publish("$session.destroying", event);
+		EapContext.publish("$session.destroying", event);
 		for (int i = httpSessionListeners.size() - 1; i >= 0 ; i--) {
 			((HttpSessionListener) httpSessionListeners.get(i)).sessionDestroyed(event);
 		}
-		TopicManager.publish("$session.destroyed", event);
+		EapContext.publish("$session.destroyed", event);
 	}
 	// END: HttpSessionListener
 	
@@ -278,19 +282,19 @@ public class WebListener extends ContextLoaderListener implements ServletContext
 	// START: ServletRequestListener
 	@Override
 	public void requestInitialized(ServletRequestEvent event) {
-		TopicManager.publish("$request.initializing", event);
+		EapContext.publish("$request.initializing", event);
 		for (int i = 0; i < servletRequestListeners.size(); i++) {
 			((ServletRequestListener) servletRequestListeners.get(i)).requestInitialized(event);
 		}
-		TopicManager.publish("$request.initialized", event);
+		EapContext.publish("$request.initialized", event);
 	}
 	@Override
 	public void requestDestroyed(ServletRequestEvent event) {
-		TopicManager.publish("$request.destroying", event);
+		EapContext.publish("$request.destroying", event);
 		for (int i = servletRequestListeners.size() - 1; i >= 0 ; i--) {
 			((ServletRequestListener) servletRequestListeners.get(i)).requestDestroyed(event);
 		}
-		TopicManager.publish("$request.destroyed", event);
+		EapContext.publish("$request.destroyed", event);
 	}
 	// END: ServletRequestListener
 }

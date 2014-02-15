@@ -20,6 +20,7 @@ import eap.base.UserDetailsVO;
  */
 public interface IEapContextHolder {
 	public Env getEnv();
+	public TopicManager getTopicManager();
 	public UserDetailsVO getUserDetailsVO();
 	public Locale getLocale();
 	public String getIp();

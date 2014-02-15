@@ -1,5 +1,6 @@
 package eap;
 
+import java.util.List;
 import java.util.Locale;
 
 import eap.base.UserDetailsVO;
@@ -29,13 +30,15 @@ public class EapContext {
 			env.init();
 			return env;
 		}
+		public TopicManager getTopicManager() {
+			return new TopicManager();
+		}
 		public Locale getLocale() {
 			return Locale.getDefault();
 		}
 		public String getIp() {
 			return "127.0.0.1";
 		}
-		@Override
 		public <T> T get(String key, Class<T> requireType) {
 			return null;
 		}
@@ -73,9 +76,33 @@ public class EapContext {
 		return holder.get(key, requireType);
 	}
 	
+	public static void publish(String topic, Object data) {
+		checkTopicManager();
+		holder.getTopicManager().publish(topic, data);
+	}
+	public static void subscribe(String topic, TopicListener listener) {
+		checkTopicManager();
+		holder.getTopicManager().subscribe(topic, listener);
+	}
+	public static void unsubscribe(String topic) {
+		checkTopicManager();
+		holder.getTopicManager().unsubscribe(topic);
+	}
+	public static void unsubscribe(String topic, TopicListener listener) {
+		checkTopicManager();
+		holder.getTopicManager().unsubscribe(topic, listener);
+	}
+	
 	private static void checkInit() {
 		if (holder == null) {
 			throw new IllegalStateException("holder not initialized");
+		}
+	}
+	
+	private static void checkTopicManager() {
+		checkInit();
+		if (holder.getTopicManager() == null) {
+			throw new IllegalStateException("topicManager not initialized");
 		}
 	}
 }

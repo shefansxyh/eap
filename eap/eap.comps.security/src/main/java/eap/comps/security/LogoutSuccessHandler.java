@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
-import eap.TopicManager;
+import eap.EapContext;
 
 /**
  * <p> Title: </p>
@@ -31,6 +31,6 @@ public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 		throws IOException, ServletException 
 	{
 		super.handle(request, response, authentication);
-		TopicManager.publish("#logout.success", authentication);
+		EapContext.publish("#logout.success", authentication);
 	}
 }
