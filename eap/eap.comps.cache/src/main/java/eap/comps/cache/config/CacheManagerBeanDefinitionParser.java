@@ -36,6 +36,8 @@ import eap.util.DomUtil;
  * ----------------------------------------
  * 
  * ----------------------------------------
+ * sudo /usr/local/bin/redis-server /etc/redis.conf
+ * cat /var/run/redis.pid 
  * </pre>
  */
 public class CacheManagerBeanDefinitionParser implements BeanDefinitionParser {

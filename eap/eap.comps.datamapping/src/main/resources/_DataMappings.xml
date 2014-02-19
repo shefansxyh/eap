@@ -4,7 +4,7 @@
 	
 	<Constant name="Env.basePath" value="conf/template" />
 	
-	<Constant name="Env.ParserDefinitionHandlerRegistry" value="PojoToText,TextToPojo,PojoToTemplate,XmlToPojo,ExcelToPojo,PojoToExcel,PojoToPdf" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry" value="PojoToText,TextToPojo,PojoToTemplate,XmlToPojo,ExcelToPojo,PojoToExcel,PojoToPdf,PojoToJson,JsonToPojo" />
 	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToText.className" value="eap.comps.datamapping.factory.object.PojoToTextMapping" />
 	<Constant name="Env.ParserDefinitionHandlerRegistry.TextToPojo.className" value="eap.comps.datamapping.factory.object.TextToPojoMapping" />
 	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToTemplate.className" value="eap.comps.datamapping.factory.object.PojoToTemplateMapping" />
@@ -12,6 +12,8 @@
 	<Constant name="Env.ParserDefinitionHandlerRegistry.ExcelToPojo.className" value="eap.comps.datamapping.factory.object.ExcelToPojoMapping" />
 	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToExcel.className" value="eap.comps.datamapping.factory.object.PojoToExcelMapping" />
 	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToPdf.className" value="eap.comps.datamapping.factory.object.PojoToPdfMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToJson.className" value="eap.comps.datamapping.factory.object.PojoToJsonMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.JsonToPojo.className" value="eap.comps.datamapping.factory.object.JsonToPojoMapping" />
 	
 	<Import resource="_DataMapping_PojoToTemplate.xml" />
 	<Import resource="_DataMapping_XmlToPojo.xml" />

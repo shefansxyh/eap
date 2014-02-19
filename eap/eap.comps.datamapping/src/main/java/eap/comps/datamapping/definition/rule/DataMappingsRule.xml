@@ -96,6 +96,18 @@
 				<include path="eap/comps/datamapping/definition/rule/SectionRule.xml"/>
 				<set-next-rule methodname="setParser" />
 			</pattern>
+			<pattern value="PojoToJson">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.PojoToJsonParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="JsonToPojo">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.JsonToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
 			<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
 			<include path="eap/comps/datamapping/definition/rule/HandlerRule.xml"/>
 			<set-next-rule methodname="addDataMapping" />

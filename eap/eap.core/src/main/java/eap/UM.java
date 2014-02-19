@@ -114,10 +114,10 @@ public class UM {
 		} catch (Exception e) {
 			throw new IllegalArgumentException("system property 'app.id' must be of type long");
 		}
-		appVersion = System.getProperty("app.version", "0.0.0");
+		appVersion = System.getProperty("app.version", "0");
 		serverIp = System.getProperty("app.ip", InetAddress.getLocalHost().getHostAddress());
 		serverPort = System.getProperty("app.port", "80");
-		serverId = serverIp + ":" + serverPort + "(" + appId + ")";
+		serverId = serverIp + ":" + serverPort;
 		
 		umConfigNS = String.format("/UM_CONFIG/APP/%s/%s", appName, appVersion);
 		envPath = umConfigNS + "/env";
@@ -126,7 +126,7 @@ public class UM {
 		lockPath = umConfigNS + "/lock";
 		cliPath = umConfigNS + "/cli";
 		
-		for (String p : new String[] {umConfigNS, envPath, serverPath, logPath, lockPath, cliPath, serverPath + "/" + serverId}) {
+		for (String p : new String[] {umConfigNS, envPath, serverPath, logPath, lockPath, cliPath}) {
 			if (client.checkExists().forPath(p) == null) {
 				client.create()
 					.creatingParentsIfNeeded()
@@ -135,6 +135,11 @@ public class UM {
 					.forPath(p, EMPTY_DATE);
 			}
 		}
+		client.create()
+			.creatingParentsIfNeeded()
+			.withMode(CreateMode.EPHEMERAL)
+			.withACL(Ids.OPEN_ACL_UNSAFE)
+			.forPath(serverPath + "/" + serverId, appIdStr.getBytes());
 		
 		leaderLatch = new LeaderLatch(client, serverPath + "/leader", serverId);
 		leaderLatch.start();
@@ -262,9 +267,9 @@ public class UM {
 				}
 			};
 			UM.addListener(UM.envPath, l1);
-			UM.addListener(UM.envPath, l1);
+//			UM.addListener(UM.envPath, l1);
 			
-			Thread.sleep(5000);
+			Thread.sleep(5000000);
 			
 //			UM.removeListener(UM.envPath, l1);
 //			

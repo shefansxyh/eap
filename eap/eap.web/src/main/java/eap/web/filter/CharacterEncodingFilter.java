@@ -12,6 +12,7 @@ import org.springframework.util.PathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import eap.util.StringUtil;
+import eap.util.UrlUtil;
 
 /**
  * <p> Title: </p>
@@ -36,6 +37,8 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	private PathMatcher pathMatcher = new AntPathMatcher();
 	private String[] excludeUrlPatterns;
 	
+	private String onceCharsetParamName = "_charset";
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 		throws ServletException, IOException 
@@ -49,10 +52,15 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 			}
 		}
 		
-		if (this.encoding != null && (this.forceEncoding || request.getCharacterEncoding() == null)) {
-			request.setCharacterEncoding(this.encoding);
+		String charset = UrlUtil.getUrlQueryStringAsMap(request.getQueryString()).get(onceCharsetParamName);
+		if (StringUtil.isBlank(charset)) {
+			charset = encoding;
+		}
+		
+		if (charset != null && (this.forceEncoding || request.getCharacterEncoding() == null)) {
+			request.setCharacterEncoding(charset);
 			if (this.forceEncoding) {
-				response.setCharacterEncoding(this.encoding);
+				response.setCharacterEncoding(charset);
 			}
 		}
 		

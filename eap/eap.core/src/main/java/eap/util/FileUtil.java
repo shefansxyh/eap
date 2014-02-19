@@ -215,12 +215,12 @@ public class FileUtil extends FileUtils {
 	
 	public static void main(String[] args) {
 		
-//		String f = "c:/tmp/xxx.log";
+		String f = "c:/tmp/xxx.log";
 //		System.out.println(getFileName(f));
 //		System.out.println(getFileNameWithoutSuffix(f));
 //		System.out.println(getFileNameWithoutSuffix("xxx.log"));
 //		System.out.println(getFileNameSuffix(f));
-//		System.out.println(getFileNameSuffix("xxx.log"));
+		System.out.println(getFileNameSuffix("xxx.log"));
 //		
 //		String img = "c:/tmp/img/xxx.jpg";
 //		System.out.println(appendFileName(img, "_200x200"));
