@@ -1,9 +1,10 @@
 package eap.util;
 
-import org.apache.log4j.Logger;
 import org.owasp.validator.html.AntiSamy;
 import org.owasp.validator.html.CleanResults;
 import org.owasp.validator.html.Policy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -26,7 +27,7 @@ import eap.Env;
  */
 public class AntiSamyUtil {
 	
-	private static final Logger logger = Logger.getLogger(AntiSamyUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(AntiSamyUtil.class);
 	
 	private static AntiSamy antiSamy =null;
 	

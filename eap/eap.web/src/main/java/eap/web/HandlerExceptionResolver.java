@@ -5,7 +5,8 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,7 @@ import eap.util.StringUtil;
  */
 public class HandlerExceptionResolver implements org.springframework.web.servlet.HandlerExceptionResolver { // not bizException;   all RuntimEexception
 	
-	private static final Logger logger = Logger.getLogger(HandlerExceptionResolver.class);
+	private static final Logger logger = LoggerFactory.getLogger(HandlerExceptionResolver.class);
 	
 	private String errorViewPrefix = "";
 	

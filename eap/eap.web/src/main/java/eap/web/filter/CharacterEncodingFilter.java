@@ -7,10 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.util.AntPathMatcher;
-import org.springframework.util.PathMatcher;
-import org.springframework.web.filter.OncePerRequestFilter;
-
 import eap.util.StringUtil;
 import eap.util.UrlUtil;
 
@@ -29,29 +25,17 @@ import eap.util.UrlUtil;
  * ----------------------------------------
  * </pre>
  */
-public class CharacterEncodingFilter extends OncePerRequestFilter {
+public class CharacterEncodingFilter extends EnhanceFilter {
 	
 	private String encoding;
 	private boolean forceEncoding = false;
 	
-	private PathMatcher pathMatcher = new AntPathMatcher();
-	private String[] excludeUrlPatterns;
-	
 	private String onceCharsetParamName = "_charset";
 	
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	protected void doFilterCleaned(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 		throws ServletException, IOException 
 	{
-		if (excludeUrlPatterns != null && excludeUrlPatterns.length > 0) {
-			for (String pattern : excludeUrlPatterns) {
-				if (pathMatcher.match(pattern, request.getServletPath())) {
-					filterChain.doFilter(request, response);
-					return;
-				}
-			}
-		}
-		
 		String charset = UrlUtil.getUrlQueryStringAsMap(request.getQueryString()).get(onceCharsetParamName);
 		if (StringUtil.isBlank(charset)) {
 			charset = encoding;
@@ -70,17 +54,13 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	public void setEncoding(String encoding) {
 		this.encoding = encoding;
 	}
-
 	public void setForceEncoding(boolean forceEncoding) {
 		this.forceEncoding = forceEncoding;
 	}
-
-	public void setExcludeUrlPatterns(String[] excludeUrlPatterns) {
-		this.excludeUrlPatterns = excludeUrlPatterns;
+	public String getOnceCharsetParamName() {
+		return onceCharsetParamName;
 	}
-	public void setExcludeUrlPatterns(String excludeUrlPatternsStr) {
-		if (excludeUrlPatternsStr != null && excludeUrlPatternsStr.length() > 0) {
-			this.excludeUrlPatterns = StringUtil.split(excludeUrlPatternsStr, ",");
-		}
+	public void setOnceCharsetParamName(String onceCharsetParamName) {
+		this.onceCharsetParamName = onceCharsetParamName;
 	}
 }

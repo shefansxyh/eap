@@ -3,7 +3,8 @@ package eap.comps.cookie;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p> Title: </p>
@@ -22,7 +23,7 @@ import org.apache.log4j.Logger;
  */
 public class CookieGenerator {
 	
-	public static final Logger logger = Logger.getLogger(CookieGenerator.class);
+	public static final Logger logger = LoggerFactory.getLogger(CookieGenerator.class);
 	
 	public static final String DEFAULT_COOKIE_PATH = "/";
 

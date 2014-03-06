@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -77,7 +78,7 @@ public class BaseController {
 	};
 	public static final int DEFAULT_DOWNLOAD_BUFFER_SIZE = 4096;
 	
-	public Logger logger = Logger.getLogger(this.getClass());
+	public Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	protected boolean enableRequestParamHtmlEscape = true;
 	protected boolean enableRequestParamEmptyAsNull = true;
@@ -315,7 +316,7 @@ public class BaseController {
 	
 	public String setException(Exception e, String viewName) {
 		Throwable cause = ExceptionUtil.getRootCause(e);
-		logger.error(e.getMessage(), cause);
+		logger.error(e.getMessage(), cause); // TODO BizException
 		
 		if (e instanceof BizException) {
 			BizException be = (BizException) e;

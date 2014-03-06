@@ -2,7 +2,7 @@ package eap.web.demo.module.sample.form.clr;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import eap.base.BaseController;
@@ -16,7 +16,7 @@ public class ProductCLR extends BaseController {
 	
 	
 	public static void main(String[] args) {
-		Logger.getLogger(ProductCLR.class).info("111111111");
+		LoggerFactory.getLogger(ProductCLR.class).info("111111111");
 	}
 	
 }

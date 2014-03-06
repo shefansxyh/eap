@@ -24,10 +24,11 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.framework.recipes.leader.LeaderLatch;
 import org.apache.curator.retry.RetryNTimes;
-import org.apache.log4j.Logger;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
 /**
@@ -45,7 +46,7 @@ import org.springframework.util.Assert;
  * </pre>
  */
 public class UM {
-	private static final Logger logger = Logger.getLogger(UM.class);
+	private static final Logger logger = LoggerFactory.getLogger(UM.class);
 	
 	public static final byte[] EMPTY_DATE = new byte[0];
 	

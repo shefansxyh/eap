@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -30,7 +31,7 @@ import eap.comps.datamapping.factory.object.template.digester.DigesterTemplateEn
  */
 public class DataMappingsDefinitionReader implements IDataMappingsDefinitionReader {
 	
-	private static final Logger logger = Logger.getLogger(DataMappingsDefinitionReader.class);
+	private static final Logger logger = LoggerFactory.getLogger(DataMappingsDefinitionReader.class);
 	
 	public static final String CONFIG_RULE_FILE = "eap/comps/datamapping/definition/rule/DataMappingsRule.xml";
 	

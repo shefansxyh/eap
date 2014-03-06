@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p> Title: </p>
@@ -24,7 +25,7 @@ import org.apache.log4j.Logger;
  */
 public class PagingDataList {
 	
-	private static final Logger logger = Logger.getLogger(PagingDataList.class);
+	private static final Logger logger = LoggerFactory.getLogger(PagingDataList.class);
 	
 	/** 总记录数 */
 	private long totalCount = 0;

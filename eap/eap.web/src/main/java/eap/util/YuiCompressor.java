@@ -10,9 +10,10 @@ import java.io.Reader;
 import java.io.Writer;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 import org.mozilla.javascript.ErrorReporter;
 import org.mozilla.javascript.EvaluatorException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yahoo.platform.yui.compressor.CssCompressor;
 import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
@@ -32,7 +33,7 @@ import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
  * </pre>
  */
 public class YuiCompressor {
-	private static final Logger logger = Logger.getLogger(YuiCompressor.class);
+	private static final Logger logger = LoggerFactory.getLogger(YuiCompressor.class);
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	
 	public static void main(String[] args) throws IOException {

@@ -10,7 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
@@ -34,7 +35,7 @@ import eap.comps.codetable.collector.SqlCollector;
  * </pre>
  */
 public class CodeTable {
-	private static final Logger logger = Logger.getLogger(CodeTable.class);
+	private static final Logger logger = LoggerFactory.getLogger(CodeTable.class);
 
 	/** 代码组别分隔符 */
 	public static final String CODE_GROUP_SEPARATOR = " |,;";

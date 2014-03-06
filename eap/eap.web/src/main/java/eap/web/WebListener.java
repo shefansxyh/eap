@@ -22,7 +22,8 @@ import javax.servlet.http.HttpSessionListener;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.ChildData;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
@@ -51,7 +52,7 @@ import eap.util.StringUtil;
  */
 public class WebListener extends ContextLoaderListener implements ServletContextListener, HttpSessionListener, ServletRequestListener {
 	
-	private static final Logger logger = Logger.getLogger(WebListener.class);
+	private static final Logger logger = LoggerFactory.getLogger(WebListener.class);
 	
 	private Env env = null;
 	

@@ -4,13 +4,13 @@ import java.io.StringWriter;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 import org.springframework.util.StringUtils;
 
 import eap.comps.datamapping.factory.object.template.ITemplateEngine;
 import eap.comps.datamapping.util.ObjectUtil;
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -29,7 +29,7 @@ import freemarker.template.Template;
  * </pre>
  */
 public class FtlTemplateEngine implements ITemplateEngine {
-	private static final Logger logger = Logger.getLogger(FtlTemplateEngine.class);
+	private static final Logger logger = LoggerFactory.getLogger(FtlTemplateEngine.class);
 	
 	private Configuration configuration;
 	

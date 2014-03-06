@@ -3,7 +3,8 @@ package eap.web;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.context.request.NativeWebRequest;
 
@@ -28,7 +29,7 @@ import eap.util.Paginator;
  */
 public class WebArgumentResolver implements org.springframework.web.bind.support.WebArgumentResolver {
 	
-	private static final Logger logger = Logger.getLogger(WebArgumentResolver.class);
+	private static final Logger logger = LoggerFactory.getLogger(WebArgumentResolver.class);
 	
 	@Override
 	public Object resolveArgument(MethodParameter mp, NativeWebRequest nwr) throws Exception {

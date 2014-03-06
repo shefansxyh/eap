@@ -35,6 +35,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/eap.web.demo/target/classes"/>
-        <property name="context-root" value="eap.web.demo"/>
+        <property name="context-root" value="demo"/>
     </wb-module>
 </project-modules>

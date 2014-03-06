@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
 import org.quartz.CalendarIntervalTrigger;
 import org.quartz.CronTrigger;
 import org.quartz.DailyTimeIntervalTrigger;
@@ -29,6 +28,8 @@ import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.SchedulerRepository;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.quartz.impl.triggers.CronTriggerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.core.Ordered;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -59,7 +60,7 @@ public class SchedulerManager implements DisposableBean, Ordered {
 		return Ordered.LOWEST_PRECEDENCE;
 	}
 	
-	private static Logger logger = Logger.getLogger(SchedulerManager.class);
+	private static Logger logger = LoggerFactory.getLogger(SchedulerManager.class);
 	
 	private static Map<String, SchedulerFactoryBean> schedulerFactory = new ConcurrentHashMap<String , SchedulerFactoryBean>();
 	

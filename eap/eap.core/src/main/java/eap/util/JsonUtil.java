@@ -3,9 +3,10 @@ package eap.util;
 import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p> Title: </p>
@@ -23,7 +24,7 @@ import org.codehaus.jackson.type.TypeReference;
  */
 public class JsonUtil {
 	
-	private static Logger logger = Logger.getLogger(JsonUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 	
 	private static ObjectMapper objectMapper = null;
 	

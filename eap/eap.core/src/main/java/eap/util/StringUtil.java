@@ -6,7 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p> Title: </p>
@@ -24,7 +25,7 @@ import org.apache.log4j.Logger;
  */
 public class StringUtil extends StringUtils {
 	
-	private static final Logger logger = Logger.getLogger(StringUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(StringUtil.class);
 	
 	public static final int MOBILE_NUMBER_LENGTH = 11;
 	

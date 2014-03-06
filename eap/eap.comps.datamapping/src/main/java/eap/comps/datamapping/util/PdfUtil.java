@@ -10,7 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -63,7 +64,7 @@ import eap.util.StringUtil;
  */
 public class PdfUtil {
 	
-	private static final Logger logger = Logger.getLogger(PdfUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(PdfUtil.class);
 	
 	// @see com.itextpdf.text.pdf.PdfWriter
 	private static final Map<String, Integer> PDF_PERMISSIONS = new HashMap<String, Integer>();

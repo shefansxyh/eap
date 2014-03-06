@@ -9,7 +9,8 @@ import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.core.io.ClassPathResource;
@@ -32,7 +33,7 @@ import eap.EapContext;
  */
 public class MessageUtil { // TODO htmlEscape
 	
-	private static final Logger logger = Logger.getLogger(MessageUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(MessageUtil.class);
 	
 	private static MessageSource messageSource;
 	

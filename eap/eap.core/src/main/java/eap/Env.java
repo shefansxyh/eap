@@ -9,7 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.StandardEnvironment;
@@ -41,7 +42,7 @@ public class Env extends StandardEnvironment implements Map<String, Object> {
 	public static final String ENV_POPS_APP_MODE_PRO = "pro"; // production
 //	public static final String ENV_POPS_APP_MODE_DEV = "dev"; // development
 	
-	protected Logger logger = Logger.getLogger(this.getClass());
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	protected String sourceName = ENV_PROPERTY_SOURCE_NAME;
 	protected String configPath = ENV_CONFIG_PATH;

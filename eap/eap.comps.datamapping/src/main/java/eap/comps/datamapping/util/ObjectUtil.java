@@ -14,7 +14,8 @@ import java.util.Properties;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.BeansException;
@@ -36,7 +37,7 @@ import org.springframework.util.ClassUtils;
  * </pre>
  */
 public class ObjectUtil {
-	private static final Logger logger = Logger.getLogger(ObjectUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(ObjectUtil.class);
 	
 	@SuppressWarnings("unchecked")
 	public static <T> T to(Object value, Class<T> clazz) {
