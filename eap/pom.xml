@@ -39,5 +39,6 @@
     <module>eap.comps.ad</module>
     <module>eap.comps.ruleengine</module>
     <module>_eap.comps.session</module>
+    <module>_eap.web.extjs.assets</module>
   </modules>
 </project>
