@@ -15,6 +15,5 @@ package eap;
  * </pre>
  */
 public interface TopicListener {
-//	public boolean onPublish(Object data);
-	public void onPublish(Object data);
+	public void onPublish(String topic, Object data);
 }

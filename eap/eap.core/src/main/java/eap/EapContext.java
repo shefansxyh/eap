@@ -1,6 +1,5 @@
 package eap;
 
-import java.util.List;
 import java.util.Locale;
 
 import eap.base.UserDetailsVO;

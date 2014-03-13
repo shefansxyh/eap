@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -26,12 +26,22 @@ public class TopicManager {
 	
 	private Map<String, List<TopicListener>> listeneresMap = new ConcurrentHashMap<String, List<TopicListener>>();
 	
-	private Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+	private ExecutorService executor = null;
+	
+	public TopicManager(boolean async) {
+		if (async) {
+			executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+		}
+	}
+	
+	public TopicManager() {
+		this(false);
+	}
 	
 	public void publish(String topic, Object data) {
 		List<TopicListener> listeners = getListeners(topic);
 		for (TopicListener listener : listeners) {
-			dispatch(listener, data);
+			dispatch(listener, topic, data);
 		}
 	}
 	
@@ -71,17 +81,27 @@ public class TopicManager {
 		this.listeneresMap = listeneresMap;
 	}
 	
-	private void dispatch(final TopicListener listener, final Object data) {
-		executor.execute(
-			new Runnable() {
-				@Override
-				public void run() {
-					listener.onPublish(data);
+	private void dispatch(final TopicListener listener, final String topic, final Object data) {
+		if (executor != null) {
+			executor.execute(
+				new Runnable() {
+					@Override
+					public void run() {
+						listener.onPublish(topic, data);
+					}
 				}
-			}
-		);
+			);
+		} else {
+			listener.onPublish(topic, data);
+		}
 	}
 	
+	public void shutdown() {
+		if (executor != null && !executor.isShutdown()) {
+			executor.shutdownNow();
+		}
+	}
+
 	public static void main(String[] args) {
 		TopicListener l1 = new L1();
 		
@@ -94,9 +114,9 @@ public class TopicManager {
 				@Override
 				public void run() {
 					for (int i = 0; i < 10000; i++) {
-						if (i == 999) {
+//						if (i == 999) {
 							tm.publish("a", i);
-						}
+//						}
 					}
 				}
 			}).start();
@@ -111,7 +131,7 @@ public class TopicManager {
 	
 	static class L1 implements TopicListener {
 		@Override
-		public void onPublish(Object data) {
+		public void onPublish(String topic, Object data) {
 			System.out.println(data);
 		}
 	}
