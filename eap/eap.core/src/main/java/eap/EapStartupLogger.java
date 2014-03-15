@@ -23,11 +23,11 @@ import eap.util.SystemInfoUtil;
  */
 public class EapStartupLogger {
 	
-	private Logger logger = LoggerFactory.getLogger(EapStartupLogger.class);
+	private static final Logger logger = LoggerFactory.getLogger(EapStartupLogger.class);
 	
 	private static final String NEW_LINE = System.getProperty("line.separator");
 	
-	public void printStartingMessage() { // ServletContext context
+	public static void printStartingMessage() { // ServletContext context
 		LogMsgBuilder logMsg = new LogMsgBuilder();
 		logMsg.add("EAP Starting");
 		
@@ -50,7 +50,7 @@ public class EapStartupLogger {
 		logger.info(logMsg.toString());
 	}
 	
-	private class LogMsgBuilder {
+	private static class LogMsgBuilder {
 		StringBuilder logMsg = new StringBuilder();
 		
 		public LogMsgBuilder add(String msg) {

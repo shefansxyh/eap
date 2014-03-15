@@ -167,6 +167,8 @@ public class NumberUtil {
 		return sb.toString();
 	}
 	
+	/* 多进制 */
+	
 	private static final char[] MULTI_DECIMAL_CHARS = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','m','n','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z'};
 	private static final int MULTI_DECIMAL_CHARS_LENGTH = MULTI_DECIMAL_CHARS.length;
 	private static final Map<Character, Integer> MULTI_DECIMAL_CHARS_INDEX = new HashMap<Character, Integer>();
@@ -226,7 +228,7 @@ public class NumberUtil {
 //		BigDecimal d2 = new BigDecimal(99999999);
 //		System.out.println(d2);
 		
-//		System.out.println(toChineseMonetray(new BigDecimal(1000200200.33)));
+		System.out.println(toChineseMonetray(new BigDecimal(1000200200.33)));
 //		for (int i = 0; i <= MULTI_DECIMAL_CHARS_LENGTH + 1000; i++) {
 		long i = 356194432229310464L;
 		System.out.println(i + " = " + toMultiDecimal(new Long(i)) +" == " + parseMultiDecimal(toMultiDecimal(new Long(i))));
