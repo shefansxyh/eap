@@ -28,6 +28,7 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import eap.EapContext;
+import eap.EapStartupLogger;
 import eap.Env;
 import eap.TopicManager;
 import eap.UM;
@@ -65,6 +66,8 @@ public class WebListener extends ContextLoaderListener implements ServletContext
 	public void contextInitialized(ServletContextEvent event) {
 		System.gc();
 		System.setProperty("java.awt.headless", "true");
+		
+		EapStartupLogger.printStartingMessage();
 		
 		WebEapContextHolder contextHolder = new WebEapContextHolder();
 		contextHolder.setEnv(new WebEnv());
