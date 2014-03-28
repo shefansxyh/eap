@@ -40,5 +40,8 @@
     <module>eap.comps.ruleengine</module>
     <module>_eap.comps.session</module>
     <module>_eap.web.extjs.assets</module>
+    <module>_eap.web.extjs.demo</module>
+    <module>_eap.um</module>
+    <module>eap.sparrow.pagestats</module>
   </modules>
 </project>

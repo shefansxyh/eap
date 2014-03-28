@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<servlet>
+		<servlet-name>StatsServlet</servlet-name>
+		<servlet-class>eap.sparrow.pagestats.StatsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StatsServlet</servlet-name>
+		<url-pattern>/stats</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CollectServlet</servlet-name>
+		<servlet-class>eap.sparrow.pagestats.CollectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CollectServlet</servlet-name>
+		<url-pattern>/collect</url-pattern>
+	</servlet-mapping>
+</web-app>
