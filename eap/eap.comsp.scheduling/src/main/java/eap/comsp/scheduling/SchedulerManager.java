@@ -464,7 +464,7 @@ public class SchedulerManager implements DisposableBean, Ordered {
 				
 				Object startupDelayObj = schedulerProps.get("startupDelay");
 				if (startupDelayObj != null && StringUtil.isNumeric(startupDelayObj.toString()) && Integer.parseInt(startupDelayObj.toString()) >= 0) {
-					if (UM.isStarted()) {
+					if (UM.isEnabled() && UM.isStarted()) {
 						if (UM.isLeader()) {
 							sfb.start();
 						}
