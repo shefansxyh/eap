@@ -22,6 +22,11 @@
       <version>1.0.0</version>
     </dependency>
     <dependency>
+      <groupId>eap</groupId>
+      <artifactId>_eap.um</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
       <version>${springframeworkVersion}</version>
