@@ -23,7 +23,7 @@ public class Paginator { // int
 	
 //	private List<Object> items;
 	
-	private int totalCount = 0; // TODO long
+	private long totalCount = 0; // TODO long
 	private int currPage = 1;
 	private int pageSize = 10;
 	
@@ -46,11 +46,11 @@ public class Paginator { // int
 	public int getLimit() {
 //		return currPage < this.getPages() ? (currPage * pageSize) : totalCount;
 //		return currPage < this.getPages() ? pageSize : (totalCount % pageSize);
-		return currPage < this.getPages() ? pageSize : totalCount - ((this.getPages() - 1) * pageSize); // TODO
+		return (int) (currPage < this.getPages() ? pageSize : totalCount - ((this.getPages() - 1) * pageSize)); // TODO
 	}
 	
 	public int getPages() {
-		return ((totalCount - 1) / pageSize) + 1;
+		return (int) (((totalCount - 1) / pageSize) + 1);
 	}
 	
 	public int prev() {
@@ -78,11 +78,11 @@ public class Paginator { // int
 		return this.getCurrPage() > 1;
 	}
 	
-	public int getTotalCount() {
+	public long getTotalCount() {
 		return totalCount;
 	}
 
-	public void setTotalCount(int totalCount) {
+	public void setTotalCount(long totalCount) {
 		this.totalCount = totalCount;
 	}
 
