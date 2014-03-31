@@ -40,13 +40,13 @@ public class Paginator { // int
 	}
 	
 	public int getOffset() {
-		return (totalCount == 0 ? 0 : ((currPage - 1) * pageSize) + 1) - 1;
+		return (totalCount == 0 ? 0 : (((currPage - 1) * pageSize) + 1) - 1);
 	}
 	
 	public int getLimit() {
 //		return currPage < this.getPages() ? (currPage * pageSize) : totalCount;
 //		return currPage < this.getPages() ? pageSize : (totalCount % pageSize);
-		return (int) (currPage < this.getPages() ? pageSize : totalCount - ((this.getPages() - 1) * pageSize)); // TODO
+		return (int) (currPage < this.getPages() ? pageSize : (totalCount - ((this.getPages() - 1) * pageSize))); // TODO
 	}
 	
 	public int getPages() {
