@@ -1,7 +1,6 @@
 package eap.comps.ruleengine;
 
 import java.util.List;
-import java.util.Properties;
 
 /**
  * <p> Title: </p>
@@ -18,10 +17,11 @@ import java.util.Properties;
  * </pre>
  */
 public interface IRuleEngine {
-	public void setConfig(Properties config);
+//	public void setConfig(Properties config);
 	public void init();
 	
 	public int execute(String rulePackage, Object bom);
+	
 	public void removeRulePackage(String rulePackage);
 	public void addRulePackage(String resource);
 	public void addRulePackages(String[] resources);

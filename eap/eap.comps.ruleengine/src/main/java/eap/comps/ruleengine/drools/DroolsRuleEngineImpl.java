@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.drools.KnowledgeBase;
 import org.drools.builder.KnowledgeBuilder;
@@ -40,7 +41,7 @@ import eap.util.StringUtil;
  */
 public class DroolsRuleEngineImpl implements IRuleEngine {
 	
-	private Object lock = new Object();
+	private ReentrantLock lock = new ReentrantLock();
 	
 	private Properties config;
 	private KnowledgeBase kBase;
@@ -52,12 +53,13 @@ public class DroolsRuleEngineImpl implements IRuleEngine {
 //		}
 		System.setProperty("drools.dateformat", "yyyy-MM-dd HH:mm:ss");
 		
-		synchronized (lock) {
-			try {
-				kBase = readKnowledgeBase(config);
-			} catch (IOException e) {
-				throw new IllegalArgumentException(e.getMessage(), e);
-			}
+		try {
+			lock.lock();
+			kBase = readKnowledgeBase(config);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e.getMessage(), e);
+		} finally {
+			lock.unlock();
 		}
 	}
 	
@@ -112,10 +114,10 @@ public class DroolsRuleEngineImpl implements IRuleEngine {
 			} else { 
 				String fileNameSuffix = FileUtil.getFileNameSuffix(resource);
 				if (StringUtil.isNotBlank(fileNameSuffix)) {
-					kBuilder.add(
-						ResourceFactory.newClassPathResource(resource, EapContext.getEnv().getEncoding()),
-						ResourceType.determineResourceType("." + fileNameSuffix)
-					);
+					ResourceType resourceType = ResourceType.determineResourceType("." + fileNameSuffix);
+					if (resourceType != null) {
+						kBuilder.add(ResourceFactory.newClassPathResource(resource, EapContext.getEnv().getEncoding()), resourceType);
+					}
 				}
 			}
 		}
@@ -153,10 +155,10 @@ public class DroolsRuleEngineImpl implements IRuleEngine {
 					for (org.springframework.core.io.Resource resource : resources) {
 						String fileNameSuffix = FileUtil.getFileNameSuffix(resource.getFilename());
 						if (StringUtil.isNotBlank(fileNameSuffix)) {
-							kBuilder.add(
-								ResourceFactory.newFileResource(resource.getFile()),
-								ResourceType.determineResourceType("." + fileNameSuffix)
-							);
+							ResourceType resourceType = ResourceType.determineResourceType("." + fileNameSuffix);
+							if (resourceType != null) {
+								kBuilder.add(ResourceFactory.newFileResource(resource.getFile()), resourceType);
+							}
 						}
 					}
 				}
